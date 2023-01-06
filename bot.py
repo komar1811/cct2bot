@@ -9,11 +9,10 @@ bot = telebot.TeleBot(bot_token)
 @bot.message_handler(commands=['start', "help"])
 def send_info(message):
     bot.send_message(message.chat.id,
-                     '''Всем Привет, Я Чат Бот ССТ 2.0
-                     Используй:
-                     \\team - чтобы узнать состав команд на ССТ 2.0
-                     \\stats - узнать количество сыгранных серий и баллов конкретного игрока
-                     \\team_stats - узнать количество баллов команды''')
+                     '''Всем Привет, Я Чат Бот ССТ 2.0 \nИспользуй:
+    \\team - чтобы узнать состав команд на ССТ 2.0
+    \\stats - узнать количество сыгранных серий и баллов конкретного игрока
+    \\team_stats - узнать количество баллов команды''')
 
 
 @bot.message_handler(commands=['team'])
@@ -54,9 +53,9 @@ def send_stats(message):
             series_stats += f"{series[counter]} серия: {player_stat_unformatted[counter + 2]}\n"
         bot.send_message(message.chat.id,
                          f'''{name} ({PLAYERS[message.text.split(' ')[1]][2]})
-                         Сумма баллов: {player_stat_unformatted[1]} 
-                         Сыграно серий: {len(player_stat_unformatted) - 2}
-                         {series_stats}''')
+        Сумма баллов: {player_stat_unformatted[1]} 
+        Сыграно серий: {len(player_stat_unformatted) - 2}
+        {series_stats}''')
     except KeyError:
         bot.send_message(message.chat.id, "Неправильный ник")
 
